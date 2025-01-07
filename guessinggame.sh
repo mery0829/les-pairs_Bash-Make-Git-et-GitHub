@@ -1,26 +1,29 @@
-function guess {
+#!/bin/bash
 
-local count=$(ls . | wc -w) 
-local condition=1
-local answ=0
+function guess() {
 
-while [[ $condition -eq 1 ]]
-do
-	echo "how many files in this directory?"
-	read answ
-	if [[ $answ -eq $count ]]
-		
-		then condition=0
-		echo "you was correct!"
-	elif [[ $answ -lt $count ]]
-		then
-		echo "wrong! more than that"
-	else
-		echo "wrong! less than that"
-	fi
-done
+    # Count 
+    local count=$(ls -1 | wc -l)
+    local condition=1
+    local answ=0
 
+    # Loop
+    while [[ $condition -eq 1 ]]
+    do
+        echo "How many files are in this directory?"
+        read answ
 
+        if [[ $answ -eq $count ]]
+        then
+            condition=0
+            echo "You were correct!"
+        elif [[ $answ -lt $count ]]
+        then
+            echo "Wrong! More than that."
+        else
+            echo "Wrong! Less than that."
+        fi
+    done
 }
 
 guess
